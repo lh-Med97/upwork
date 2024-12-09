@@ -52,9 +52,18 @@ const JobInfo = styled.p`
     color: #555;
 `;
 
+const SearchInput = styled.input`
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+`;
+
 const FindJobs: React.FC = () => {
     const [jobs, setJobs] = useState<Job[]>([]);
     const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+    const [searchQuery, setSearchQuery] = useState<string>('');
 
     useEffect(() => {
         const fetchJobs = async () => {
@@ -85,13 +94,23 @@ const FindJobs: React.FC = () => {
         setSelectedJob(job);
     };
 
+    const filteredJobs = jobs.filter(job =>
+        job.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div className="container mx-auto px-4 py-8 h-screen">
             <div className="flex flex-col md:flex-row">
                 <JobListContainer className="w-full md:w-1/3 pr-0 md:pr-4 mb-4 md:mb-0">
                     <h2 className="text-2xl font-bold mb-4">Job List</h2>
+                    <SearchInput
+                        type="text"
+                        placeholder="Search jobs..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
                     <ul className="space-y-4">
-                        {jobs.map(job => (
+                        {filteredJobs.map(job => (
                             <JobListItem
                                 key={job.id}
                                 onClick={() => handleJobSelect(job)}
