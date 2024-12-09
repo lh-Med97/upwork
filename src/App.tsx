@@ -6,7 +6,7 @@ import FindJobs from './pages/FindJobs';
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-100">
+      <div className="">
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />

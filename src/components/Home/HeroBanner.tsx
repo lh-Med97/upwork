@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeroBanner: React.FC = () => {
   return (
-    <div className="relative min-h-screen flex items-center justify-center text-white">
+    <div className="relative cursor-animation  min-h-screen  bg-gray-600 flex items-center justify-center text-white">
       <video className="absolute top-0 left-0 w-full h-full object-cover opacity-20 bg-green-600" autoPlay loop muted style={{ opacity: 0.1 }}>
         <source src="/video.mp4" type="video/mp4" />
         Your browser does not support the video tag.

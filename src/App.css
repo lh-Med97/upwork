@@ -35,4 +35,28 @@
   to {
     transform: rotate(360deg);
   }
+  
+}
+@import 'animate.css'; /* Include this at the top of your CSS file */
+
+.cursor-animation {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
