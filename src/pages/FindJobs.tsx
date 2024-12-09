@@ -60,10 +60,47 @@ const SearchInput = styled.input`
     border-radius: 0.25rem;
 `;
 
+const RecommendedJobsContainer = styled.div`
+    margin-top: 2rem;
+    flex: 1; /* Allow to grow */
+`;
+
+const RecentSearchesContainer = styled.div`
+    margin-top: 2rem;
+    flex: 1; /* Allow to grow */
+`;
+
 const FindJobs: React.FC = () => {
     const [jobs, setJobs] = useState<Job[]>([]);
     const [selectedJob, setSelectedJob] = useState<Job | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>('');
+    const [recentSearches, setRecentSearches] = useState<string[]>([]);
+    // const recommendedJobs: Job[] = [
+    //     {
+    //         id: 1,
+    //         title: 'Frontend Developer',
+    //         company: 'Toptal',
+    //         website: 'https://www.toptal.com',
+    //         industry: 'Freelance Network',
+    //         location: 'Remote',
+    //         description: 'Seeking a skilled frontend developer...',
+    //         required_skills: ['HTML', 'CSS', 'JavaScript'],
+    //         annual_salary_range: '$80,000 - $150,000',
+    //         benefits: ['Flexible hours', 'Competitive pay'],
+    //     },
+    //     {
+    //         id: 2,
+    //         title: 'Backend Developer',
+    //         company: 'GitLab',
+    //         website: 'https://about.gitlab.com',
+    //         industry: 'DevOps and Software Development',
+    //         location: 'Remote',
+    //         description: 'Looking for a backend developer with experience...',
+    //         required_skills: ['Ruby on Rails', 'Docker'],
+    //         annual_salary_range: '$90,000 - $160,000',
+    //         benefits: ['Stock options', 'Unlimited PTO'],
+    //     },
+    // ];
 
     useEffect(() => {
         const fetchJobs = async () => {
@@ -72,14 +109,14 @@ const FindJobs: React.FC = () => {
                 const transformedJobs: Job[] = response.data.map((item: any) => ({
                     id: item.id,
                     title: item.title,
-                    company: 'Example Company', // Placeholder
-                    website: 'https://example.com', // Placeholder
-                    industry: 'Tech', // Placeholder
+                    company: 'Example Company',
+                    website: 'https://example.com',
+                    industry: 'Tech',
                     location: 'Remote',
                     description: item.body,
-                    required_skills: ["HTML", "CSS", "JavaScript"], // Placeholder
-                    annual_salary_range: "$80,000 - $150,000", // Placeholder
-                    benefits: ["Flexible hours", "Competitive pay"], // Placeholder
+                    required_skills: ['HTML', 'CSS', 'JavaScript'],
+                    annual_salary_range: '$80,000 - $150,000',
+                    benefits: ['Flexible hours', 'Competitive pay'],
                 }));
                 setJobs(transformedJobs);
             } catch (error) {
@@ -98,8 +135,41 @@ const FindJobs: React.FC = () => {
         job.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    const handleSearchSubmit = (searchTerm: string) => {
+        if (searchTerm && !recentSearches.includes(searchTerm)) {
+            setRecentSearches([...recentSearches, searchTerm]);
+        }
+    };
+
     return (
+
         <div className="container mx-auto px-4 py-8 h-screen">
+            
+            <div className="flex flex-col md:flex-row">
+                {/* Recommended Jobs Section */}
+                <RecommendedJobsContainer className="w-full md:w-1/2">
+                    <h2 className="text-2xl font-bold mb-4">Emplois recommandés</h2>
+                    <ul className="space-y-4">
+                        {/* {recommendedJobs.map(job => (
+                            <JobListItem key={job.id}>
+                                {job.title} at {job.company}
+                            </JobListItem>
+                        ))} */}
+                    </ul>
+                </RecommendedJobsContainer>
+
+                {/* Recent Searches Section */}
+                <RecentSearchesContainer className="w-full md:w-1/2">
+                    <h2 className="text-2xl font-bold mb-4">Recherches récentes</h2>
+                    <ul className="space-y-4">
+                        {recentSearches.map((search, index) => (
+                            <li key={index} className="border p-2 rounded-md">
+                                {search}
+                            </li>
+                        ))}
+                    </ul>
+                </RecentSearchesContainer>
+            </div>
             <div className="flex flex-col md:flex-row">
                 <JobListContainer className="w-full md:w-1/3 pr-0 md:pr-4 mb-4 md:mb-0">
                     <h2 className="text-2xl font-bold mb-4">Job List</h2>
@@ -107,7 +177,10 @@ const FindJobs: React.FC = () => {
                         type="text"
                         placeholder="Search jobs..."
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={(e) => {
+                            setSearchQuery(e.target.value);
+                            handleSearchSubmit(e.target.value);
+                        }}
                     />
                     <ul className="space-y-4">
                         {filteredJobs.map(job => (
@@ -142,6 +215,7 @@ const FindJobs: React.FC = () => {
                     )}
                 </div>
             </div>
+
         </div>
     );
 };
