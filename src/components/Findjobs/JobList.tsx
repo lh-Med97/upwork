@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  max-width: 1200px;
+
   margin: auto;
   padding: 2rem;
 `;
@@ -68,7 +68,7 @@ interface JobListProps {
 
 const JobList: React.FC<JobListProps> = ({ jobs, onJobSelect }) => {
   return (
-    <Container>
+    <Container className='mx-auto px-4 py-8  '>
       <Title>Available Jobs</Title>
       <div className="flex flex-col space-y-4">
         {jobs.map(job => (
