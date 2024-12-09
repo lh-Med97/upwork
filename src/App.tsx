@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navigation/Navbar.tsx';
-import HomePage from './pages/HomePage.tsx';
-
+import Navbar from './components/Navigation/Navbar';
+import HomePage from './pages/HomePage';
+import FindJobs from './pages/FindJobs';
 function App() {
   return (
     <BrowserRouter>
@@ -10,8 +10,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* Other routes will be added later */}
-        </Routes>
+          <Route path="/find-jobs" element={<FindJobs />} />
+          </Routes>
       </div>
     </BrowserRouter>
   );
