@@ -7,6 +7,8 @@ import FindTalentPage from './pages/FindTalentPage';
 import WhyUpworkPage from './pages/WhyUpworkPage';
 import EnterprisePage from './pages/EnterprisePage';
 import Footer from './components/Navigation/Footer';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
           <Route path="/find-talent" element={<FindTalentPage />} />
           <Route path="/why-upwork" element={<WhyUpworkPage />} />
           <Route path="/enterprise" element={<EnterprisePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+                
         </Routes>
         <div className="mt-auto  h-50">
           <Footer />

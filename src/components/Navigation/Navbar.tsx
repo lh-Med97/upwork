@@ -64,15 +64,15 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Link 
               to="/login"
-              className="text-gray-600 hover:text-green-600 transition-colors duration-200"
+              className="nav-link"
             >
-              Log in
+              Login
             </Link>
             <Link 
-              to="/signup"
-              className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors duration-200"
+              to="/register"
+              className="nav-link"
             >
-              Sign Up
+              Register
             </Link>
           </div>
 
@@ -124,13 +124,13 @@ const Navbar: React.FC = () => {
                   to="/login"
                   className="block w-full text-center px-3 py-2 rounded-md text-gray-600 hover:text-green-600 hover:bg-gray-50"
                 >
-                  Log in
+                  Login
                 </Link>
                 <Link
-                  to="/signup"
-                  className="block w-full text-center px-3 py-2 rounded-md bg-green-600 text-white hover:bg-green-700"
+                  to="/register"
+                  className="block w-full text-center px-3 py-2 rounded-md text-gray-600 hover:text-green-600 hover:bg-gray-50"
                 >
-                  Sign Up
+                  Register
                 </Link>
               </div>
             </div>
