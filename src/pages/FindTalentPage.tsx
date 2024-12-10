@@ -1,6 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import IntroductionSection from '../components/FindTalentSections/IntroductionSection';
+import HowItWorksSection from '../components/FindTalentSections/HowItWorksSection';
+import BrowseTalentSection from '../components/FindTalentSections/BrowseTalentSection';
+import FeaturedTalentSection from '../components/FindTalentSections/FeaturedTalentSection';
+import SuccessStoriesSection from '../components/FindTalentSections/SuccessStoriesSection';
+import FAQsSection from '../components/FindTalentSections/FAQsSection';
+import CallToActionSection from '../components/FindTalentSections/CallToActionSection';
+import ResourcesSection from '../components/FindTalentSections/ResourcesSection';
 
 const Container = styled.div`
   max-width: 1200px;
@@ -38,6 +46,14 @@ const FindTalentPage: React.FC = () => {
             </button>
           </div>
         </div>
+        <IntroductionSection />
+        <HowItWorksSection />
+        <BrowseTalentSection />
+        <FeaturedTalentSection />
+        <SuccessStoriesSection />
+        <FAQsSection />
+        <CallToActionSection />
+        <ResourcesSection />
       </Container>
     </motion.div>
   );

@@ -1,11 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBriefcase, faMapMarkerAlt, faDollarSign, faTags } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
-
   margin: auto;
   height: auto;
   padding: 2rem;
+`;
+
+const JobListContainer = styled.div`
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 100%;
 `;
 
 const Title = styled.h2`
@@ -16,18 +23,13 @@ const Title = styled.h2`
   margin-bottom: 1.5rem;
 `;
 
-const JobCard = styled.div`
+const JobListItem = styled.li`
+  margin-bottom: 1.5rem;
   border: 1px solid #e2e2e2;
+  padding: 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  transition: transform 0.2s;
-  cursor: pointer;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 1rem;
 `;
 
 const JobTitle = styled.h3`
@@ -60,6 +62,8 @@ interface Job {
   title: string;
   company: string;
   location: string;
+  annual_salary_range: string;
+  required_skills: string[];
 }
 
 interface JobListProps {
@@ -69,19 +73,28 @@ interface JobListProps {
 
 const JobList: React.FC<JobListProps> = ({ jobs, onJobSelect }) => {
   return (
-    <Container className='mx-auto px-4 py-8  '>
+    <JobListContainer>
       <Title>Available Jobs</Title>
-      <div className="flex flex-col space-y-4">
+      <ul>
         {jobs.map(job => (
-          <JobCard key={job.id} onClick={() => onJobSelect(job)}>
-            <JobTitle>{job.title}</JobTitle>
-            <JobDescription>Company: {job.company}</JobDescription>
-            <JobDescription>Location: {job.location}</JobDescription>
+          <JobListItem key={job.id} onClick={() => onJobSelect(job)}>
+            <JobTitle>
+              <FontAwesomeIcon icon={faBriefcase} /> {job.title}
+            </JobTitle>
+            <JobDescription>
+              <FontAwesomeIcon icon={faMapMarkerAlt} /> {job.location}
+            </JobDescription>
+            <JobDescription>
+              <FontAwesomeIcon icon={faDollarSign} /> {job.annual_salary_range}
+            </JobDescription>
+            <JobDescription>
+              <FontAwesomeIcon icon={faTags} /> {job.required_skills.join(', ')}
+            </JobDescription>
             <ApplyButton>Apply Now</ApplyButton>
-          </JobCard>
+          </JobListItem>
         ))}
-      </div>
-    </Container>
+      </ul>
+    </JobListContainer>
   );
 };
 
