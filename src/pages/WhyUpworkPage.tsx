@@ -22,18 +22,21 @@ const WhyUpworkPage: React.FC = () => {
         <h1 className="text-4xl font-bold mb-8">Why Upwork</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div className="bg-white p-6 rounded-lg shadow-md">
+            <img src="/path/to/proven-talent-image.jpg" alt="Proven Talent" className="mb-4 rounded" />
             <h2 className="text-2xl font-semibold mb-4">Proven Talent</h2>
             <p className="text-gray-600">
               Access a vast network of skilled professionals, vetted and ready to work.
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md">
+            <img src="/path/to/safe-secure-image.jpg" alt="Safe & Secure" className="mb-4 rounded" />
             <h2 className="text-2xl font-semibold mb-4">Safe & Secure</h2>
             <p className="text-gray-600">
               Protected payments and constant support ensure worry-free collaboration.
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md">
+            <img src="/path/to/global-reach-image.jpg" alt="Global Reach" className="mb-4 rounded" />
             <h2 className="text-2xl font-semibold mb-4">Global Reach</h2>
             <p className="text-gray-600">
               Connect with talent and clients from around the world.
